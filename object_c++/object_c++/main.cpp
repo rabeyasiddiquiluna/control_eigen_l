@@ -1,21 +1,14 @@
+
 #include <iostream>
 #include <math.h>
 #include <vector>
 #include <Eigen/Dense>
-#include <Eigen/StdVector>
+
 
 using namespace std;
 
-/**
- * Fit a circle in a set of points. You need a minimum of 1 point to fit a circle.
- *
- * @param points Is the set of points.
- * @param midpoint Is the fitted midpoint of the circle.
- * @param Returns true, if no error occur. An error occurs, if the points vector is empty.
- */
-bool solveLeastSquaresCircleKasa(const  std::vector<Eigen::Vector2d, Eigen::aligned_allocator<Eigen::Vector2d> > &points, Eigen::Vector2d &midpoint, double &radius)
-//bool solveLeastSquaresCircleKasa(const std::vector<Eigen::Vector2d> &points, Eigen::Vector2d &midpoint, double &radius)
 
+bool solve(const  std::vector<Eigen::Vector2d, Eigen::aligned_allocator<Eigen::Vector2d> > &points, Eigen::Vector2d &midpoint, double &radius)
 {
     int length = points.size();
     double x1;
@@ -82,13 +75,13 @@ int main()
     bool ok;
     
     samplePoints.push_back(Eigen::Vector2d(6.5, 6));
-  //  samplePoints.push_back(Eigen::Vector2d(6, 3));
-  //  samplePoints.push_back(Eigen::Vector2d(3.5, 2));
- //   samplePoints.push_back(Eigen::Vector2d(0.5, 3));
- //   samplePoints.push_back(Eigen::Vector2d(1, 5.5));
- //   samplePoints.push_back(Eigen::Vector2d(3, 7.5));
+    samplePoints.push_back(Eigen::Vector2d(6, 3));
+    samplePoints.push_back(Eigen::Vector2d(3.5, 2));
+    samplePoints.push_back(Eigen::Vector2d(0.5, 3));
+    samplePoints.push_back(Eigen::Vector2d(1, 5.5));
+    samplePoints.push_back(Eigen::Vector2d(3, 7.5));
     
-    ok = solveLeastSquaresCircleKasa(samplePoints, midpoint, radius);
+    ok = solve(samplePoints, midpoint, radius);
     
     if (ok)
     {
@@ -96,5 +89,6 @@ int main()
     }
     
     getchar();
+    
     return ok ? EXIT_SUCCESS : EXIT_FAILURE;
 }
